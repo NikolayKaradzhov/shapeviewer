@@ -2,7 +2,7 @@
 <html lang="bg">
 <head>
   <meta charset="UTF-8">
-  <title>Фигури с цвят и въртене</title>
+  <title>Фигури с цвят, въртене и изображение</title>
   <style>
     body {
       display: flex;
@@ -19,6 +19,8 @@
       cursor: pointer;
       border: 2px solid black;
       box-sizing: border-box;
+      background-size: cover;
+      background-position: center;
       transition: background-color 0.3s, border-bottom-color 0.3s;
     }
 
@@ -50,7 +52,18 @@
       z-index: -1;
     }
 
-    /* Анимация за въртене */
+    .triangle-image {
+      position: absolute;
+      top: 0;
+      left: -60px;
+      width: 120px;
+      height: 100px;
+      clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+      background-size: cover;
+      background-position: center;
+      z-index: 0;
+    }
+
     .rotate {
       animation: spin 0.6s ease-in-out;
     }
@@ -58,6 +71,10 @@
     @keyframes spin {
       from { transform: rotate(0deg); }
       to { transform: rotate(360deg); }
+    }
+
+    input[type="file"] {
+      display: none;
     }
   </style>
 </head>
@@ -67,7 +84,8 @@
   <div class="shape circle"></div>
   <div class="shape triangle"></div>
 
-  <script src="script.js"></script>
+  <input type="file" id="fileInput" accept="image/*">
 
+  <script src="script.js"></script>
 </body>
 </html>
