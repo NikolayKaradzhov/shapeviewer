@@ -1,5 +1,4 @@
-
-    const colors = ['red', 'green', 'blue'];
+const colors = ['red', 'green', 'blue'];
     const fileInput = document.getElementById('fileInput');
 
     document.querySelectorAll('.shape').forEach(shape => {
@@ -15,7 +14,6 @@
       shape.addEventListener('contextmenu', function (e) {
         e.preventDefault();
 
-        // Запазваме текущата фигура за референция след избор на файл
         const targetShape = this;
 
         fileInput.onchange = function () {
@@ -27,11 +25,9 @@
             const imageUrl = event.target.result;
 
             if (targetShape.classList.contains('triangle')) {
-              // Премахваме старото изображение (ако има)
               const oldImage = targetShape.querySelector('.triangle-image');
               if (oldImage) oldImage.remove();
 
-              // Добавяме ново изображение като child елемент
               const imgDiv = document.createElement('div');
               imgDiv.classList.add('triangle-image');
               imgDiv.style.backgroundImage = `url('${imageUrl}')`;
@@ -46,4 +42,14 @@
 
         fileInput.click();
       });
+    });
+
+    // Превключване на темата
+    const themeToggle = document.querySelector('.theme-toggle');
+    const body = document.body;
+
+    themeToggle.addEventListener('click', () => {
+      const isDark = body.classList.toggle('dark-theme');
+      body.classList.toggle('light-theme', !isDark);
+      themeToggle.textContent = isDark ? 'Светла тема' : 'Тъмна тема';
     });
