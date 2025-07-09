@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="UTF-8">
+  <title>Фигури с цвят и въртене</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f0f0f0;
+    }
+
+    .shape {
+      width: 100px;
+      height: 100px;
+      cursor: pointer;
+      border: 2px solid black;
+      box-sizing: border-box;
+      transition: background-color 0.3s, border-bottom-color 0.3s;
+    }
+
+    .circle {
+      border-radius: 50%;
+    }
+
+    .triangle {
+      width: 0;
+      height: 0;
+      border: none;
+      border-left: 60px solid transparent;
+      border-right: 60px solid transparent;
+      border-bottom: 100px solid transparent;
+      position: relative;
+    }
+
+    .triangle::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -60px;
+      width: 0;
+      height: 0;
+      border-left: 60px solid transparent;
+      border-right: 60px solid transparent;
+      border-bottom: 100px solid transparent;
+      border-bottom-color: black;
+      z-index: -1;
+    }
+
+    /* Анимация за въртене */
+    .rotate {
+      animation: spin 0.6s ease-in-out;
+    }
+
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="shape square"></div>
+  <div class="shape circle"></div>
+  <div class="shape triangle"></div>
+
+  <script src="script.js"></script>
+
+</body>
+</html>
